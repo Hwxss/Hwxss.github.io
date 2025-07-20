@@ -17,6 +17,7 @@
     var hsjcjg = 1;
     var ymjz = 0;
     var jzcs = "";
+
     $(window).load(function () {
       if (yy == 0) {
         document.getElementById("sfkyjx").innerText = "在预约时间段内，可以进校";
@@ -33,72 +34,55 @@
         } else {
           document.getElementById("sfkyjx1").innerText = "无核酸检测结果";
         }
-
       }
-
     });
+
     $(function () {
       // 当文档就绪时执行的代码
-
-      // 获取当前日期
       var date = new Date();
-
-      // 最初调用getDate函数
-      updateDates();
-
-      // 使用setInterval每秒更新一次日期，调用updateDates函数
-      setInterval(updateDates, 1000);
+      updateDates(); // 初始化调用
+      setInterval(updateDates, 1000); // 每秒更新一次
     });
 
     function updateDates() {
-      // 获取当前日期
       var date = new Date();
 
-      // 更新具有id“times”的div中的时间
+      // 更新当前的时间显示
       updateFormattedTime(date);
 
-      // 在特定格式中显示当前月份和日期
+      // 更新日期，固定为10:00
       $("#yr").text(date.getMonth() + 1 + "月" + date.getDate() + "日");
 
-      // 显示完整日期格式
-      $("#fullDate").text(getFormattedFullDate(date));
-      $("#fullDatee").text(getFormattedFullDatee(date));
+      // 更新开始时间，日期正常变化，时间为10:00
+      $("#fullDate").text(getFormattedFullDate(date, "10:00"));
 
+      // 更新结束时间，日期正常变化
+      $("#fullDatee").text(getFormattedFullDatee(date));
     }
 
     function updateFormattedTime(date) {
-      // 格式化时间组件
       var hour = (date.getHours() < 10 ? "0" : "") + date.getHours();
       var minute = (date.getMinutes() < 10 ? "0" : "") + date.getMinutes();
       var second = (date.getSeconds() < 10 ? "0" : "") + date.getSeconds();
       var formattedTime = hour + ":" + minute + ":" + second;
-
-      // 获取具有id“times”的div
       var div1 = document.getElementById("times");
-
-      // 清空div的内容
       $("#times").empty();
-
-      // 将格式化后的时间写入div
       div1.innerHTML = formattedTime;
     }
 
-    function getFormattedFullDate(date) {
-      // 格式化完整日期
+    function getFormattedFullDate(date, time) {
       var year = date.getFullYear();
       var month = (date.getMonth() < 9 ? "0" : "") + (date.getMonth() + 1);
       var day = (date.getDate() < 10 ? "0" : "") + date.getDate();
-      return year + "-" + month + "-" + day + " 12:00";
+      return year + "-" + month + "-" + day + " " + time;
     }
+
     function getFormattedFullDatee(date) {
-      // 格式化完整日期
       var year = date.getFullYear();
       var month = (date.getMonth() < 9 ? "0" : "") + (date.getMonth() + 1);
       var day = (date.getDate() < 10 ? "0" : "") + date.getDate();
       return year + "-" + month + "-" + day + " 22:00";
     }
-
-
   </script>
   <style type="text/css">
     #_copy {
@@ -183,8 +167,7 @@
 <body inmaintabuse="1">
   <div class="max">
     <span id="GUID" style="display: none"></span>
-    <div class="max-sk" <div
-      style="background-image: url(./image.png);width:90%;margin-top:-20px;border-radius:20px;background-size: 100% 100%;height:780px;">
+    <div class="max-sk" style="background-image: url(./image.png);width:90%;margin-top:-20px;border-radius:20px;background-size: 100% 100%;height:780px;">
       <div class="ewm1">
         <img id="viewConttainer2" style="width: 300px;" src="./schoolname.png"><br>
         <span class="max-span">访客通行码</span>
@@ -201,9 +184,8 @@
       <div style="width:90%;height:85px;border-radius: 25px;margin-left: 40px;">
         <span class="max-bfxx">被访部门：<b style="font-weight: 200;">信息与机电工程分院</b></span>
       </div>
-
       <div style="width:90%;height:85px;border-radius: 25px;margin-left: 40px;">
-        <span class="max-bfxx">开始时间：<b style="font-weight: 200;" id="fullDate">2024-03-03 08:00</b></span>
+        <span class="max-bfxx">开始时间：<b style="font-weight: 200;" id="fullDate">2024-03-03 10:00</b></span>
       </div>
       <div style="width:90%;height:85px;border-radius: 25px;margin-left: 40px;">
         <span class="max-bfxx">结束时间：<b style="font-weight: 200;" id="fullDatee">2024-03-07 22:30</b></span>
@@ -220,18 +202,10 @@
           <img id="viewConttainer1" style="width: 100%; height: 100%" src="./err.png">
         </div>
       </div>
-      <span class="max-sk-nz-zts" style="margin-top: 10px;"><a class="max-sk-nz-zts-aa"
-          style="text-decoration: none;">刷新</a></span>
+      <span class="max-sk-nz-zts" style="margin-top: 10px;"><a class="max-sk-nz-zts-aa" style="text-decoration: none;">刷新</a></span>
       <span class="max-sk-nz-ztz" style="margin-top: 10px; color:red;" id="sfkyjx">在预约时间段内，可以进校</span>
-
-
     </div>
-
   </div>
-
-
-  <script src="chrome-extension://nhiheekdcnmfbapkmpbhmplfddenhjic/sm.bundle.js" data-pname="supercopy-v3"
-    data-asset-path="https://spc3.s3.ap-east-1.amazonaws.com"></script>
 </body>
 
 </html>
